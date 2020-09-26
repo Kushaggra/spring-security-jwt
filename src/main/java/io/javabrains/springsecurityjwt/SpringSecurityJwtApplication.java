@@ -58,7 +58,7 @@ class HelloWorldController {
 
 		try {
 			authenticationManager.authenticate(
-					new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
+					new UsernamePasswordAuthenticationToken(authenticationRequest.getUserName(), authenticationRequest.getPassword())
 			);
 		}
 		catch (BadCredentialsException e) {
@@ -67,7 +67,7 @@ class HelloWorldController {
 
 
 		final UserDetails userDetails = userDetailsService
-				.loadUserByUsername(authenticationRequest.getUsername());
+				.loadUserByUsername(authenticationRequest.getUserName());
 
 		final String jwt = jwtTokenUtil.generateToken(userDetails);
 
